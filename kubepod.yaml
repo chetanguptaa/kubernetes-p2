@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubeapp-pod
+  labels:
+    app: kubeapp
+    name: kube-app
+spec:
+  containers:
+  - name: kube-container
+    image: chetanguptaa/kubeapp
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+    - containerPort: 80
+      name: http
+      protocol: TCP
