@@ -1,19 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-deploy
+  name: deploy-example
 spec:
+  replicas: 3
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: myapp
+      app: nginx
+      env: prod
   template:
     metadata:
       labels:
-        app: myapp
+        app: nginx
+        env: prod
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: nginx:alpine
         resources:
           limits:
             memory: "128Mi"
