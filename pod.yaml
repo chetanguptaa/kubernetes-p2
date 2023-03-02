@@ -13,6 +13,14 @@ spec:
         cpu: "100m"
     ports:
       - containerPort: 80
+    tty: true
     command:
       - sleep
       - "3600"
+    volumeMounts:
+      - mountPath: "/demo/"
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: myclaim
