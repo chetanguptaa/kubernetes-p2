@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mybox
+  labels:
+    name: mybox
+spec:
+  containers:
+  - name: mybox
+    image: busybox
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+    command:
+      - sleep
+      - "3600"
+    env:
+    - name: USERNAME 
+      valueFrom:
+        secretKeyRef:
+          name: secrets
+          key: username
+    - name: PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: secrets
+          key: password
+
+    
